@@ -1,0 +1,16 @@
+{{ define "main" }}
+<section class="index-article-container">
+  {{ partial "profile.html" . }}
+  {{ partial "stats.html" . }}
+
+  <div class="index-article-content">
+    <h2 class="index-article-title">Latest Posts</h2>
+    <div>
+      {{ range first 7 (where .Site.RegularPages "Type" "posts") }}
+      {{ partial "article-card.html" . }}
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+

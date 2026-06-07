@@ -1,0 +1,29 @@
+<div class="card-article">
+  <div class="card-meta">
+    <i class="far fa-calendar"></i> {{ .Date.Format "January 2, 2006" }}
+    <span class="space">|</span>
+    <i class="far fa-clock"></i> {{ .ReadingTime }} min read
+    <span class="space">|</span>
+    <i class="far fa-file-text"></i> {{ .WordCount }} words 
+
+    {{ with .Params.categories }} 
+    <span class="space">|</span>
+    <i class="fas fa-folder"></i> 
+    {{ range first 1 . }}
+    <a href="{{ "categories" | relURL }}/{{ . | urlize }}/">{{ . }}</a>
+    {{ end }}
+    {{ end }}
+
+    {{ with .Params.tags }}
+    <span class="space">|</span>
+    <i class="fas fa-tags"></i>
+    {{ range first 2 . }}
+    <a href="{{ "tags" | relURL }}/{{ . | urlize }}/">#{{ . }}</a>
+    {{ end }}
+    {{ end }}
+  </div>
+
+  <div class="card-content">
+    <a href="{{ .Permalink }}" class="card-title">{{ .Title }}</a>    
+  </div>
+</div>

@@ -8,6 +8,8 @@
       <i class="far fa-clock"></i> {{ .ReadingTime }} min read
       <span class="space">|</span>
       <i class="far fa-file-text"></i> {{ .WordCount }} words
+      <span class="space">|</span>
+      <i class="far fa-eye"></i> <span id="view-count"></span> views
 
       {{ with .Params.categories }} 
       <span class="space">|</span>
@@ -69,6 +71,9 @@
     {{ end }}
   </div>
 </nav>
+<script>
+  fetch(`http://blog-view-count-db.enochyu.workers.dev/increment?name={{ .File.BaseFileName }}`);
+</script>
 {{ end }}
 
 

@@ -1,7 +1,9 @@
 <section class="profile-section">
   <div id="profile-image">
-    {{ $img := resources.Get .Site.Params.avatar }}
-    <img src="{{ $img.RelPermalink }}" alt="avatar" class="avatar"> 
+  {{ if .Site.Params.avatar }}
+    <img src="{{ .Site.Params.avatar | relURL }}" alt="avatar" class="avatar">
+  {{ end }}
+
   </div>
   <div id="profile-info">
     <h1 class="profile-name">{{ .Site.Params.author }}</h1>
@@ -18,12 +20,6 @@
       {{ with .Site.Params.social.youtube }}
       <a href="{{ . }}" target="_blank" rel="noopener" aria-label="Youtube">
         <i class="fab fa-youtube"></i>
-      </a>
-      {{ end }}
-
-      {{ with .Site.Params.social.linkedin }}
-      <a href="{{ . }}" target="_blank" rel="noopener" aria-label="LinkedIn">
-        <i class="fab fa-linkedin"></i>
       </a>
       {{ end }}
 

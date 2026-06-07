@@ -1,0 +1,42 @@
+{{ define "main" }}
+<div class="page-header">
+  <h1>{{ .Title }}</h1>
+</div>
+<section id="archives">
+  <div id="archives-content">
+    <div>
+      {{ range (where .Site.RegularPages "Section" "posts").GroupByDate "2006" }}
+      {{ if ne .Key "0001" }}
+      <div>
+        <h2 class="year" id="year-{{ .Key }}">YEAR {{ .Key }}</h2>
+        <div>
+          {{ range .Pages }}
+          {{ partial "archives-card.html" . }}
+          {{ end }}
+        </div>
+        <br>
+      </div>
+      {{ end }}
+      {{ end }}
+    </div>
+  </div>
+  <div>
+    <aside class="toc-sidebar" id="archives-toc" style="margin-top:1.3rem;">
+      <div class="toc">
+        <div class="toc-title">Table of Contents</div>
+        <nav>
+          <ul>
+          {{ range (where .Site.RegularPages "Section" "posts").GroupByDate "2006" }}
+            {{ if ne .Key "0001" }}
+              <li><a href="#year-{{ .Key }}">YEAR {{ .Key }}</a></li>
+            {{ end }}
+          {{ end }}
+          </ul>
+        </nav>
+      </div>
+    </aside> 
+  </div> 
+</section>
+{{ end }}
+
+

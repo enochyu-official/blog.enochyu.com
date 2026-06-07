@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
 <meta name="keywords" content="Enoch Yu, 유에녹, Blog, Personal Blog">
@@ -9,14 +9,14 @@
 
 <meta name="robots" content="index, follow">
 <meta property="og:title" content="Enoch Yu's Personal Blog" />
-<title>Enoch Yu's Personal Blog</title>
+<title>Enoch Yu's Blog</title>
 
 <link rel="icon" href="/favicon/favicon.ico">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
 <link rel="canonical" href="https://blog.enochyu.com/" />
 
 
-<link rel="stylesheet" href="/css/bundle.min.cf3d0bab07d66b36120bc4dc14217c694e7f2442d20135f01dae4214c90cbf53.css" integrity="sha256-zz0LqwfWazYSC8TcFCF8aU5/JELSATXwHa5CFMkMv1M=">
+<link rel="stylesheet" href="/css/bundle.min.40a90c4728199271b4f9a23f6d24074929ba6f2dd97d5c6aae8744fc5e18c980.css" integrity="sha256-QKkMRygZknG0&#43;aI/bSQHSSm6by3ZfVxqrodE/F4YyYA=">
 
 <script type="application/ld+json">
 {
@@ -26,6 +26,7 @@
   "url": "https://blog.enochyu.com/"
 }
 </script>
+
 
 
 </head>
@@ -41,43 +42,8 @@
       </button>
 
       <ul class="nav-menu" id="navMenu">
-        
-        <li class="nav-item">
-          <a class="nav-link" href="/">
-            Home
-          </a>
-        </li>
-        
-        <li class="nav-item">
-          <a class="nav-link" href="/archives/">
-            Archives
-          </a>
-        </li>
-        
-        <li class="nav-item">
-          <a class="nav-link" href="/categories/math/">
-            Math
-          </a>
-        </li>
-        
-        <li class="nav-item">
-          <a class="nav-link" href="/categories/computer-science/">
-            Computer Science
-          </a>
-        </li>
-        
-        <li class="nav-item">
-          <a class="nav-link" href="/categories/student-life/">
-            Student Life
-          </a>
-        </li>
-        
-        <li class="nav-item">
-          <a class="nav-link" href="/categories/miscellaneous/">
-            Miscellaneous
-          </a>
-        </li>
-        
+        <li><a href="/" class="nav-link ">Home</a></li>
+        <li><a href="/archive" class="nav-link active">Archive</a></li>
       </ul>
     </div>
   </nav>
@@ -88,8 +54,7 @@
   <main>
     
 <div class="page-header">
-  <h1>Archives</h1>
-  
+  <h1>Archive</h1>
 </div>
 <section id="archives">
   <div id="archives-content">
@@ -315,63 +280,28 @@
       &copy; 2026 Enoch Yu. All Rights Reserved.
     </a>
   </div>
-  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-svg.js"></script>
   <script>
-    var t = setInterval(function() {
-      if (window.goatcounter && window.goatcounter.visit_count) {
-        clearInterval(t)
-        window.goatcounter.visit_count({append: '#gc-total-views'})
+  document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll(".view-count").forEach(async (span) => {
+      const blogName = span.getAttribute("data-blog");
+      try {
+        const response = await fetch(`http://blog-view-count-db.enochyu.workers.dev/?name=${blogName}`);
+        const text = await response.text();
+        
+        span.textContent = text.match(/\d+$/)?.[0] || "0";
+      } catch {
+        span.textContent = "—";
       }
-    }, 100)
+    });
+  });
   </script>
-  <script data-goatcounter="https://enochyu-blog.goatcounter.com/count"
-          async src="https://gc.zgo.at/count.v5.js"
-          crossorigin="anonymous"
-          integrity="sha384-atnOLvQb9t+jTSipvd75X2yginT4PjVbqDdlJAmxMm+wYElFmeR6EmLP5bYeoRVQ"></script>
-
-  <script>
-    function updateViewCounts() {
-      const counters = document.querySelectorAll(".page-views");
-
-      counters.forEach(el => {
-        let path = el.getAttribute("data-gc-path") || "";
-
-        path = path.replace(/^\/+|\/+$/g, "");
-
-        const gcPath = path === "" ? "/" : path;
-        const url = `https://enochyu-blog.goatcounter.com/counter/${encodeURIComponent(gcPath)}.json`;
-
-        fetch(url)
-          .then(r => {
-            if (!r.ok) {
-              throw new Error(`HTTP ${r.status}`);
-            }
-            return r.json();
-          })
-
-          .then(d => {
-            el.textContent = d.count || "0";
-          })
-
-          .catch(err => {
-            console.error("GoatCounter Error for path:", path, err);
-            el.textContent = "0";
-          });
-      });
-    }
-
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', updateViewCounts);
-    } else {
-      updateViewCounts();
-    }
-  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-svg.js"></script>
 </footer>
 
-  
+
   
   
   <script src="/js/script.js"></script>
-  
 </body>
 </html>
+

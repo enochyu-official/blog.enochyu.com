@@ -1,0 +1,56 @@
+{{ .Scratch.Set "totalWords" 0 }}
+{{ range where .Site.RegularPages "Section" "posts" }}
+  {{ $.Scratch.Add "totalWords" .WordCount }}
+{{ end }}
+
+<section class="stats-section">
+  <div class="stats-card">
+    <div class="stats-title">Categories</div>
+    <div class="stats-content">
+      {{ range .Site.Taxonomies.categories.ByCount }}
+      <div class="stats-item">
+        <a href="{{ .Page.Permalink }}" class="stats-badge">{{ .Page.Title }}</a>
+        <span>{{ .Count }}</span>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+
+  <div class="stats-card">
+    <div class="stats-title">Tags</div>
+    <div class="stats-content">
+      {{ range .Site.Taxonomies.tags.ByCount }} 
+      <div class="stats-item">
+        <a href="{{ .Page.Permalink }}" class="stats-badge">{{ .Page.Title }}</a>
+        <span>{{ .Count }}</span>
+      </div>
+      {{ end }} 
+    </div>
+  </div>
+
+  <div class="stats-card">
+    <div class="stats-title">Statistics</div>
+    <div class="stats-content"> 
+      <div class="stats-item" style="border-bottom:1px solid var(--accent-color1)">
+        <div class="stats-label">Words</div>
+        <div class="stats-number">{{ .Scratch.Get "totalWords" }}</div>
+      </div>
+
+      <div class="stats-item" style="border-bottom:1px solid var(--accent-color1)">
+        <div class="stats-label">Posts</div>
+        <div class="stats-number">
+          {{ len (where .Site.RegularPages "Section" "posts") }}
+        </div>
+      </div>
+
+      <div class="stats-item">
+        <div class="stats-label">Total Visits</div>
+        <div class="stats-number" id="view-count"></div>
+        <span class="view-count" data-blog="homepage-main">
+          Loading...
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+

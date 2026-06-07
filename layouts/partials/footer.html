@@ -4,21 +4,6 @@
       &copy; {{ now.Year }} {{ .Site.Params.author }}. All Rights Reserved.
     </a>
   </div>
-  <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    document.querySelectorAll(".view-count").forEach(async (span) => {
-      const blogName = span.getAttribute("data-blog");
-      try {
-        const response = await fetch(`http://blog-view-count-db.enochyu.workers.dev/?name=${blogName}`);
-        const text = await response.text();
-        
-        span.textContent = text.match(/\d+$/)?.[0] || "0";
-      } catch {
-        span.textContent = "—";
-      }
-    });
-  });
-  </script>
   <script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-svg.js"></script>
 </footer>
 

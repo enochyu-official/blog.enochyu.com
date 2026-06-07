@@ -5,6 +5,8 @@
     <i class="far fa-clock"></i> {{ .ReadingTime }} min read
     <span class="space">|</span>
     <i class="far fa-file-text"></i> {{ .WordCount }} words 
+    <span class="space">|</span>
+    <i class="far fa-eye" id="view-count"></i> views
 
     {{ with .Params.categories }} 
     <span class="space">|</span>
@@ -27,3 +29,4 @@
     <a href="{{ .Permalink }}" class="card-title">{{ .Title }}</a>    
   </div>
 </div>
+

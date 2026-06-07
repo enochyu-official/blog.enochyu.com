@@ -64,6 +64,8 @@
       <i class="far fa-file-text"></i> 544 words
       <span class="space">|</span>
       <i class="far fa-eye"></i> <span id="view-count"></span> views
+      <span class="view-count" data-blog="post03_AcceptingFailure">
+        Loading...</span>
 
        
       <span class="space">|</span>
@@ -202,21 +204,6 @@ if we have the positive mindset to create the future!!</p>
       &copy; 2026 Enoch Yu. All Rights Reserved.
     </a>
   </div>
-  <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    document.querySelectorAll(".view-count").forEach(async (span) => {
-      const blogName = span.getAttribute("data-blog");
-      try {
-        const response = await fetch(`http://blog-view-count-db.enochyu.workers.dev/?name=${blogName}`);
-        const text = await response.text();
-        
-        span.textContent = text.match(/\d+$/)?.[0] || "0";
-      } catch {
-        span.textContent = "—";
-      }
-    });
-  });
-  </script>
   <script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-svg.js"></script>
 </footer>
 
@@ -224,6 +211,8 @@ if we have the positive mindset to create the future!!</p>
   
   
   <script src="/js/script.js"></script>
+  
+  <script src="/js/counter.js"></script>
 </body>
 </html>
 

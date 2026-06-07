@@ -5,7 +5,7 @@
 <section id="archives">
   <div id="archives-content">
     <div>
-      {{ range (where .Site.RegularPages "Section" "posts").GroupByDate "2006" }}
+      {{ range (where .Site.RegularPages "Type" "posts").GroupByDate "2006" }}
       {{ if ne .Key "0001" }}
       <div>
         <h2 class="year" id="year-{{ .Key }}">YEAR {{ .Key }}</h2>

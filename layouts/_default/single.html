@@ -39,7 +39,7 @@
 
 <section class="giscus"></section>
 <script src="https://giscus.app/client.js"
-    data-repo="enochyu-official/blog"
+    data-repo="enochyu-official/blog.enochyu.com"
     data-repo-id="R_kgDOQmE9xg"
     data-category="General"
     data-category-id="DIC_kwDOQmE9xs4Czr9C"
@@ -74,7 +74,7 @@
   </div>
 </nav>
 <script>
-  fetch(`http://blog-view-count-db.enochyu.workers.dev/increment?name={{ .File.BaseFileName }}`);
+  fetch(`https://blog-view-count-db.enochyu.workers.dev/increment?name={{ .File.BaseFileName }}`);
 </script>
 {{ end }}
 

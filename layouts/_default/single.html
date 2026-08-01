@@ -10,8 +10,7 @@
       <i class="far fa-file-text"></i> {{ .WordCount }} words
       <span class="space">|</span>
       <i class="far fa-eye"></i>
-      <span class="view-count" data-blog="{{ .File.BaseFileName }}">
-        Loading...</span> views
+      <span id="view-count"> loading...</span> views
 
       {{ with .Params.categories }} 
       <span class="space">|</span>
@@ -73,8 +72,5 @@
     {{ end }}
   </div>
 </nav>
-<script>
-  fetch(`https://blog-view-count-db.enochyu.workers.dev/increment?name={{ .File.BaseFileName }}`);
-</script>
 {{ end }}
 

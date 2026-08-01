@@ -1,15 +1,21 @@
-document.addEventListener("DOMContentLoaded", () => {
-  document.querySelectorAll(".view-count").forEach(async (span) => {
-    const blogName = span.getAttribute("data-blog");
-    try {
-      const response = await fetch(`https://blog-view-count-db.enochyu.workers.dev/?name=${blogName}`);
-      const text = await response.text();
-      
-      span.textContent = text.match(/\d+$/)?.[0];
-    } catch {
-      span.textContent = "—";
-    }
-  });
-});
+const workerUrl = 'https://blog-view-counter-db.enochyu.workers.dev';
+const pageUrl = window.location.href;
+const viewCountEl = document.getElementById('view-count');
 
+if (viewCountEl) {
+  fetch(`${workerUrl}/?url=${encodeURIComponent(pageUrl)}`)
+    .then(response => {
+      if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+      return response.json();
+    })
+    .then(data => {
+      if (data.error) throw new Error(data.error);
+      viewCountEl.textContent = `${data.count}`;
+    })
+    .catch(error => {
+      console.error('Error fetching view count:', error);
+      viewCountEl.classList.add('error');
+      viewCountEl.textContent = `Error (${error.message})`;
+    });
+}
 

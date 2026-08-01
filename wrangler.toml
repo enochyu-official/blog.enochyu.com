@@ -1,0 +1,9 @@
+name = "blog-view-counter-db"
+compatibility_date = "2026-08-01"
+main = "src/index.ts"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "blog-view-counter-db"
+database_id = "ead30695-4540-456d-b1b1-4dad03d4d7f6"
+
